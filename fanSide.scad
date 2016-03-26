@@ -6,8 +6,12 @@ module fan30mmScrewHoles(l=hotendFanHolderH+2) {
   for(x=[-1,1]) 
     for(y=[-1,1]) 
       translate([x*24/2,y*24/2,0]) {
-        translate([0,0,-1])
-          cylinder(d=screwM3D,h=l);
+        difference() {
+          translate([0,0,-1])
+            cylinder(d=screwM3D,h=l);
+          translate([0,0,-0.2])
+            cylinder(d=screwM3D+0.2,h=0.2);
+        }
         rotate([0,0,-x*90])
           nutInsideHole(nutParams=nutM3,depth=8);
       }
@@ -76,25 +80,39 @@ module fanSide() {
         mirror([0,m,0]) {
           translate([-(carriageL-fanT)/2-+fanT,-25,(lm8uuD+4)/2])
             firstLM8UUholder(l=(carriageL-fanT)/2-centralGap/2+fanT);
-          if (m==1)
+          if (m==1) {
             gt2Plate(xTranslate=-((carriageL-fanT)/2+fanT)+gt2PlateL/2);
+            hull() {
+              translate([-((carriageL-fanT)/2+fanT),-(rodDst/2+14)+8/2+5-0.1,(lm8uuD+2*wallThickness)/2+2*wallThickness+14])
+                cube([15,0.1,wallThickness]);
+              translate([-(carriageL-fanT)/2+2,-fanHolderLugY,2*fanHolderLugX+(screwM2HeadD+2)/2])
+                cube([15,0.1,wallThickness]);
+            }
+            hull() {
+              translate([-((carriageL-fanT)/2+fanT),-(rodDst/2+14)+8/2+5-wallThickness,(lm8uuD+2*wallThickness)/2+14-2*wallThickness])
+                cube([15,wallThickness,0.1]);
+              translate([-((carriageL-fanT)/2+fanT),-rodDst/2-wallThickness/2,(lm8uuD+2*wallThickness)/2])
+                cube([15,wallThickness,0.1]);
+            }
         }
-    }    
+      
+      }
+    }
+    translate([-(16/2+1.4),0,radiatorL/2])
+      rotate([0,90,0])
+        #holderMountScrewHoles();
+    translate([-(carriageL-fanT)/2+fanScewL/2,0,radiatorL/2])
+      rotate([0,-90,0])
+        #fan30mmScrewHoles(l=16);
+    for(y=[-1,1]) {
+      translate([0,y*25,(lm8uuD+4)/2])
+        rotate([0,-90,0]) {
+          cylinder(h=(carriageL-fanT)/2+fanT-wallThickness, d=lm8uuD);
+          #cylinder(h=(carriageL-fanT)/2+fanT+1, d=lm8uuD-2*wallThickness);
+        }
+    }
   }
 }
 
-//centralPartDiff();
-
 fanSide();
-
-/*
-translate([-16/2,0,radiatorL/2])
-      rotate([0,90,0])
-        #holderMountScrewHoles();
-      
-
-
-translate([-(carriageL-fanT)/2+fanScewL/2,0,radiatorL/2])
-  rotate([0,-90,0])
-    #fan30mmScrewHoles(l=16);
-*/
+// fan30mmScrewHoles(l=16);

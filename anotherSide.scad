@@ -48,39 +48,6 @@ module secondLM8UUholder() {
       cylinder(d=lm8uuD+2*wallThickness,h=(carriageL-fanT)/2-centralGap/2);
 }
 
-module gt2Plate() {
-  gt2PlateL=15;
-  gt2PlateTh=2*wallThickness;
-  gt2PlateZ=(lm8uuD+2*wallThickness)/2-gt2PlateTh/2+14;
-  translate([-(carriageL-fanT)/2+gt2PlateL/2,-(rodDst/2+14),gt2PlateZ])
-  difference() {
-    union() {
-      translate([0,-((nutM2D+2*0.5)/2-5)/2,0])
-        cube([gt2PlateL,(nutM2D+2*0.5)/2+8+5,gt2PlateTh],center=true);
-      translate([0,-(8/2+3*(nutM2D+2*0.5)/4),0])
-        cube([gt2PlateL-(nutM2D+2*0.5),(nutM2D+2*0.5)/2,gt2PlateTh],center=true);
-      for(t=[-1,1])
-        translate([t*(gt2PlateL-(nutM2D+2*0.5))/2,-(8/2+(nutM2D+2*0.5)/2),0])
-          cylinder(d=(nutM2D+2*0.5),h=gt2PlateTh,center=true);
-      translate([0,-(8/2+(nutM2D+2*0.5)/2),-gt2PlateTh/2])
-        gt2NutGap();
-      translate([0,8/2+5/2,gt2PlateTh/2+((3/2)*gt2PlateTh)/2])
-        cube([gt2PlateL,5,(3/2)*gt2PlateTh],center=true);
-    }
-    translate([0,0,gt2PlateTh/2])
-      cube([gt2PlateL+1,8,0.5+0.5],center=true);
-    translate([0,8/2+5/2,gt2PlateTh/2+(gt2PlateTh)/2])
-        cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh],center=true);
-    translate([-(gt2PlateL-4*wallThickness)/2,8/2,(gt2PlateTh/2+(gt2PlateTh)/2)/2])
-        rotate([-10,0,0])
-          cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh/2]);
-    translate([0,-(8/2+(nutM2D+2*0.5)/2),-(gt2PlateTh/2+nutM2H)]) {
-      cylinder(h=10,d=screwM2D);
-      cylinder(h=nutM2H,d=nutM2D, $fn=6);
-    }
-  }
-}
-
 module anotherSide() {
   difference() {
     union() {
@@ -107,7 +74,7 @@ module anotherSide() {
       }
     }
 //    translate([hotendFanHolderH-10,0,radiatorL/2])
-    translate([16/2,0,radiatorL/2])
+    translate([16/2+1.4,0,radiatorL/2])
       rotate([0,-90,0])
         #holderMountScrewHoles();
     for(y=[-1,1]) {

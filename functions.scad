@@ -40,8 +40,12 @@ module holderMountScrewHoles(l=16) {
   for(x=[-1,1]) 
     for(y=[-1,1]) 
       translate([x*fanHolderLugX,y*fanHolderLugY,0]) {
-        translate([0,0,-1])
-          cylinder(d=screwM2D,h=l-0.2+1);
+        difference() {
+          translate([0,0,-1])
+            cylinder(d=screwM2D,h=l-0.2+1);
+          translate([0,0,nutM2H])
+            cylinder(d=screwM2D+0.1,h=0.2);
+        }
         translate([0,0,l])
           cylinder(d=screwM2HeadD,h=carriageL-hotendFanHolderH-l+1);
         rotate([0,0,-x*90])
