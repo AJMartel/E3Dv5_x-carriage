@@ -6,7 +6,7 @@ $fs=0.5;
 
 radiatorL=31.8; // Length of radiator
 radiatorD=25; // Diameter of radiator
-hotendNeckD=9;
+hotendNeckD=12.1;
 fanHoleD = 28; //Diameter of fan hole
 
 rodDst = 50; // Distance berween rods

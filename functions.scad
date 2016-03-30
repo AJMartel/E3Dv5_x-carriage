@@ -167,6 +167,3 @@ module gt2Plate(xTranslate=-(carriageL-fanT)/2+gt2PlateL/2) {
     }
   }
 }
-holderMountScrewHoles();
-//lm8uuHolderScrewLug();
-//fanHolderLugs();

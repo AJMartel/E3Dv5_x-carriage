@@ -12,7 +12,7 @@ nutM3D = nutM3W/cos(30);
 // screws
 // M2
 screwM2D = 2+0.3;
-screwM2HeadD = 3.8;
+screwM2HeadD = 4;
 screwM2HeadH = 2.0;
 // M3
 screwM3D = 3+0.3;

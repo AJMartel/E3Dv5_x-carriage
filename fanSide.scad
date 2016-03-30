@@ -68,7 +68,7 @@ module centralPart() {
         rotate([180,0,0])
           bodyBevel(L=radiatorL/2,h1=radiatorL/2-(fanHoleD/2+wallThickness),d1Lip=4.5,d2Lip=0.1,h2=(carriageL-fanT)/2-(radiatorD+2*wallThickness)/2);
     }
-    //centralPartDiff();
+    centralPartDiff();
   }
 }
 
