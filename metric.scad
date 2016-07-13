@@ -12,10 +12,12 @@ nutM3D = nutM3W/cos(30);
 // screws
 // M2
 screwM2D = 2+0.3;
-screwM2HeadD = 4;
+screwM2HeadD = 4.2;
 screwM2HeadH = 2.0;
 // M3
 screwM3D = 3+0.3;
+screwM3HeadD = 5.4+0.2;
+screwM3HeadH = 3.0;
 
 // lm8uu
 lm8uuD = 15+0.4; // Diameter of lm8uu
@@ -25,3 +27,12 @@ lm8uuL = 24.1; // Length of lm8uu
 
 //fan
 fanT = 10; //fanThickness
+
+screwM2 = [screwM2HeadD,screwM2HeadH,screwM2D];
+module screw(size,L) {
+  cylinder(d=size[0],h=size[1]);
+    translate([0,0,size[1]])
+      cylinder(d=size[3],h=L);
+}
+
+//screw(screwM2,3);

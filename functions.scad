@@ -135,6 +135,29 @@ module firstLM8UUholder(l=(carriageL-fanT)/2-centralGap/2) {
       #cube([l+1,1,(nutM2D+wallThickness)+2],center=true);
   }
 }
+//gt2Plate();
+gt2Cup();
+
+module gt2Cup() {
+  difference() {
+    union() {
+      translate([0,-((nutM2D+2*0.5)/2-5)/2,0])
+        cube([gt2PlateL,(nutM2D+2*0.5)/2+8+5,gt2PlateTh-0.2],center=true);
+      translate([0,-(8/2+3*(nutM2D+2*0.5)/4),0])
+        cube([gt2PlateL-(nutM2D+2*0.5),(nutM2D+2*0.5)/2,gt2PlateTh-0.2],center=true);
+      for(t=[-1,1])
+        translate([t*(gt2PlateL-(nutM2D+2*0.5))/2,-(8/2+(nutM2D+2*0.5)/2),0])
+          cylinder(d=(nutM2D+2*0.5),h=gt2PlateTh-0.2,center=true);
+    }
+    for (x=[-1,1])
+      translate([x*(gt2PlateL/2-wallThickness),8/2+5/2,0])
+        #cube([2*wallThickness+1,5,(3/2)*gt2PlateTh-0.2],center=true);
+    translate([0,-(8/2+(nutM2D+2*0.5)/2),-(gt2PlateTh/2+nutM2H)])
+      cylinder(h=10,d=screwM2D);
+    translate([0,0,gt2PlateTh/2])
+      #cube([gt2PlateL+1,8,0.5+0.5],center=true);
+  }
+}
 
 module gt2Plate(xTranslate=-(carriageL-fanT)/2+gt2PlateL/2) {
   
@@ -155,12 +178,12 @@ module gt2Plate(xTranslate=-(carriageL-fanT)/2+gt2PlateL/2) {
         cube([gt2PlateL,5,(3/2)*gt2PlateTh],center=true);
     }
     translate([0,0,gt2PlateTh/2])
-      cube([gt2PlateL+1,8,0.5+0.5],center=true);
+      #cube([gt2PlateL+1,8,0.5+0.5],center=true);
     translate([0,8/2+5/2,gt2PlateTh/2+(gt2PlateTh)/2])
-        cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh],center=true);
+       cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh],center=true);
     translate([-(gt2PlateL-4*wallThickness)/2,8/2,(gt2PlateTh/2+(gt2PlateTh)/2)/2])
         rotate([-10,0,0])
-          cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh/2]);
+          #cube([gt2PlateL-4*wallThickness,5+1,gt2PlateTh/2]);
     translate([0,-(8/2+(nutM2D+2*0.5)/2),-(gt2PlateTh/2+nutM2H)]) {
       cylinder(h=10,d=screwM2D);
       cylinder(h=nutM2H,d=nutM2D, $fn=6);
